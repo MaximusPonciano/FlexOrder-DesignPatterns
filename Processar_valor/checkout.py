@@ -1,27 +1,40 @@
 from abc import ABC, abstractmethod
 
-class EstrategiaFrete(ABC):
+class Pedido:
+    def __init__(self, itens: list):
+        self.itens = itens
+        self.valor_base = sum(item['valor'] for item in itens)
+        print(f"Pedido criado com valor base de R${self.valor_base:.2f}")
+
+    def calcular_valor(self) -> float:
+        return self.valor_base
+    
+###################################################################################################################################################################################################################################################################
+
+class Frete(ABC):
     @abstractmethod
     def calcular(self, valor_base_pedido: float):
         ...
 
-class FreteNormal(EstrategiaFrete):
+class FreteNormal(Frete):
     def calcular(self, valor_base_pedido: float):
         custo_frete = valor_base_pedido * 0.05
         print(f"Frete Normal: R${custo_frete:.2f}")
         return custo_frete
 
-class FreteExpresso(EstrategiaFrete):
+class FreteExpresso(Frete):
     def calcular(self, valor_base_pedido: float):
         custo_frete = valor_base_pedido * 0.10 + 15.00
         print(f"Frete Expresso (com taxa): R${custo_frete:.2f}")
         return custo_frete
 
-class FreteTeletransporte(EstrategiaFrete):
+class FreteTeletransporte(Frete):
     def calcular(self):
         custo_frete = 50.00
         print(f"Frete Teletransporte: R${custo_frete:.2f}")
         return custo_frete
+    
+###################################################################################################################################################################################################################################################################
 
 class Pagamento(ABC):
     @abstractmethod
@@ -52,8 +65,17 @@ class PagamentoCredito(Pagamento):
             return False 
         
 
-frete = FreteExpresso()
-frete.calcular(1000)
+
+###################################################################################################################################################################################################################################################################        
+itens_p1 = [
+    {'nome': 'Capa da Invisibilidade', 'valor': 150.0},
+    {'nome': 'Poção de Voo', 'valor': 80.0}
+]
+
+pedido = Pedido(itens_p1)
 
 pagamento = PagamentoPix()
-pagamento.processarValor(200)
+pagamento.processarValor(pedido.valor_base)
+
+frete = FreteExpresso()
+frete.calcular(pedido.valor_base)
