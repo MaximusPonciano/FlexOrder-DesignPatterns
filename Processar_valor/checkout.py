@@ -43,6 +43,10 @@ class Pagamento(ABC):
 
 class PagamentoPix(Pagamento):
     def processarValor(self, valor_final: float):
+        if valor_final == valor_final:
+            valor_final = valor_final * 0.95
+
+    
         print(f"Processando R${valor_final:.2f} via PIX...")
         print("    -> Pagamento com PIX APROVADO (QR Code gerado).")
         return True 
