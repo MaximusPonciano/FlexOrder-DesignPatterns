@@ -1,7 +1,7 @@
-from pedido import Pedido
-from frete import Frete
-from pagamento import Pagamento
-from embalagem import Embalagem
+from .pedido import Pedido
+from .frete import Frete
+from .pagamento import Pagamento
+from .embalagem import Embalagem
 
 class ProcessarPedido:
     def __init__(self, pedido: Pedido, frete: Frete, pagamento: Pagamento, embalagem: Embalagem):

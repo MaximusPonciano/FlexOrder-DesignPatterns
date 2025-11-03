@@ -1,8 +1,8 @@
-from pedido import Pedido
-from frete import FreteExpresso
-from pagamento import PagamentoPix
-from embalagem import Embalagem
-from processar_pedido import ProcessarPedido
+from Processar_valor.pedido import Pedido
+from Processar_valor.frete import FreteExpresso
+from Processar_valor.pagamento import PagamentoPix
+from Processar_valor.embalagem import Embalagem
+from Processar_valor.processar_pedido import ProcessarPedido
 
 if __name__ == "__main__":
     print("\n========================= NOVA ARQUITETURA =========================")
