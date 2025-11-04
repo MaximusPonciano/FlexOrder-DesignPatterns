@@ -97,14 +97,3 @@ class ProcessarPedido:
 
         print(f"\nValor total com frete e embalagem: R${total:.2f}")
         self.pagamento.processarValor(total)
-
-
-# ==============================================================
-
-ProcessarPedido.criar(
-    [{'nome': 'Capa da Invisibilidade', 'valor': 150.0},
-     {'nome': 'Poção de Voo', 'valor': 80.0}],
-    FreteExpresso,
-    PagamentoPix,
-    usar_embalagem=True
-).somarValor()
